@@ -1,0 +1,69 @@
+<style>
+    .my-drop-zone {
+        border: dotted 3px lightgray;
+    }
+
+    .nv-file-over {
+        border: dotted 3px red;
+    }
+
+    /* Default class applied to drop zones on over */
+
+    .another-file-over-class {
+        border: dotted 3px green;
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+</style>
+
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <h3 class="float-left"> Şehir için Yeni bir Resim ekle..</h3>
+        <div class="col-md-12">
+            <form #imageForm=ngForm (ngSubmit)="OnSubmit(Description,Image)">
+                <div class="form-group has-success input-field col s12">
+                    <input  data-max-size="2" type="text" #Description ngModel name="Description" id="Description" placeholder="Resim Açıklaması.." class="form-control is-valid col-md-4">
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img [src]="imageUrl" style="width: 300px;height: 200px">
+                    </div>
+                    <div class="col-md-2">
+                        <div class="upload-btn-wrapper">
+                            <button class="btn btn-outline-info">Upload a file</button>
+                            <input type="file" #Image accept="image/*" (click)="startLoadingSpinner()" 
+                            (change)="handeleFileInput($event.target.files);closeLoadingSpinner()"/>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="sk-circle" id="loadingSpinner" style="display: none">
+                            <!--burada her biri nokta ve sırayla yan sön oluyor. 
+                            12 yi +2 ,-2 +2, -2 yapınca havalı oldu :)-->
+                            <div class="sk-circle1 sk-child"></div>
+                            <div class="sk-circle2 sk-child"></div>
+                            <!-- <div class="sk-circle3 sk-child"></div>
+                        <div class="sk-circle4 sk-child"></div> -->
+                            <div class="sk-circle5 sk-child"></div>
+                            <div class="sk-circle6 sk-child"></div>
+                            <!-- <div class="sk-circle7 sk-child"></div>
+                        <div class="sk-circle8 sk-child"></div> -->
+                            <div class="sk-circle9 sk-child"></div>
+                            <div class="sk-circle10 sk-child"></div>
+                            <!-- <div class="sk-circle11 sk-child"></div>
+                        <div class="sk-circle12 sk-child"></div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Yükle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+  
